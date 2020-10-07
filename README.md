@@ -280,10 +280,10 @@ Example :
 @end
 
 @implementation MyDelegate
-- (int) GetMeasuredHeight : (MeasureValue*_Nonnull) values {
+- (int) GetMeasuredHeight : (MeasureValue*) values {
     return values.measuredValue + 20;
 }
-- (int) GetMeasuredWidth : (MeasureValue*_Nonnull) values {
+- (int) GetMeasuredWidth : (MeasureValue*) values {
     return values.measuredValue + 20;
 }
 @end
