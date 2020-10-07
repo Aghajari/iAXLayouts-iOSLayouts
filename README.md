@@ -237,27 +237,27 @@ an ArcLayout for iOS based on [Android-ArcLayout-Library](https://github.com/oga
 
 Example :
 ```objc
-layout = [[ArcLayout alloc] init];
+ArcLayout *layout = [[ArcLayout alloc] init];
 layout.arcRadius = 168;
 layout.axisRadius = 120;
 layout.arc = [[ArcType alloc] initWithGravity:[Gravity CENTER]];// [Gravity TOP]|[Gravity Left]
 ...
 [self.view addSubview:layout];
 
-[self addLabel :@"A" :UIColorFromRGB(0x03a9f4)];
-[self addLabel :@"B" :UIColorFromRGB(0x03a9f4)];
-[self addLabel :@"C" :UIColorFromRGB(0x03a9f4)];
-[self addLabel :@"D" :UIColorFromRGB(0x03a9f4)];
-[self addLabel :@"E" :UIColorFromRGB(0x03a9f4)];
-[self addLabel :@"F" :UIColorFromRGB(0x03a9f4)];
+[self addLabel :@"A"];
+[self addLabel :@"B"];
+[self addLabel :@"C"];
+[self addLabel :@"D"];
+[self addLabel :@"E"];
+[self addLabel :@"F"];
     
-- (void) addLabel : (NSString*) text : (UIColor*) color {
+- (void) addLabel : (NSString*) text {
     UILabel *label = [[UILabel alloc] init];
     label.layer.cornerRadius = 24;
     label.clipsToBounds = YES;
     label.textAlignment = NSTextAlignmentCenter;
     label.text = text;
-    label.backgroundColor = color;
+    label.backgroundColor = [UIColor blueColor];
     label.textColor = [UIColor whiteColor];
     
     ArcLayoutParams *lp = [[ArcLayoutParams alloc] initWithSize:48 :48];
@@ -271,6 +271,8 @@ Output:
 
 ## LayoutParams
 LayoutParams are used by views to tell their parents how they want to be laid out.
+
++ Supports LayoutDirection (RTL&LTR)
 
 by `MeasureValueDelegate` you can customize measuredValue of width and height for each View!
 
@@ -315,10 +317,8 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
 
-
 <br><br>
 <div align="center">
   <img width="64" alt="LCoders | AmirHosseinAghajari" src="https://user-images.githubusercontent.com/30867537/90538314-a0a79200-e193-11ea-8d90-0a3576e28a18.png">
   <br><a>Amir Hossein Aghajari</a> • <a href="mailto:amirhossein.aghajari.82@gmail.com">Email</a> • <a href="https://github.com/Aghajari">GitHub</a>
 </div>
-
