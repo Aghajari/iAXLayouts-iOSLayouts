@@ -1,0 +1,6 @@
+framework module iAXLayouts {
+  umbrella header "iAXLayouts.h"
+
+  export *
+  module * { export * }
+}
