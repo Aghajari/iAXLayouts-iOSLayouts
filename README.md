@@ -1,5 +1,8 @@
 ## iAXLayouts - iOS Layouts
  
+ ![iAXLayouts](https://user-images.githubusercontent.com/30867537/95582536-a446ef00-0a47-11eb-9cda-8c4226458185.png)
+
+ 
 **Let's include AndroidLayouts into iOS!**
 
 A `MainLayout` is a special `UIView` that can contain other views (called children or subview.) The `MainLayout` is the base class for layouts and views containers.
@@ -92,46 +95,46 @@ Output:
 
 Example :
 ```objc
-    FrameLayout *layout = [[FrameLayout alloc] init];
-    ...
-    [self.view addSubview:layout];
+FrameLayout *layout = [[FrameLayout alloc] init];
+...
+[self.view addSubview:layout];
+
+// TOP
+UILabel *header = [[UILabel alloc] init];
+[header setText:@"FrameLayout Top"];
+[header setTextColor:[UIColor whiteColor]];
+[header setTextAlignment:NSTextAlignmentCenter];
+[header setBackgroundColor:[UIColor blueColor]];
+FrameLayoutParams *lp1 = [[FrameLayoutParams alloc] initWithSize:MATCH_PARENT :WRAP_CONTENT];
+[lp1 setMargins:20 :20 :20 :20];
+lp1.gravity = [Gravity TOP];
+lp1.extraHeight = 20;
+[layout addSubview:header :lp1];
     
-    // TOP
-    UILabel *header = [[UILabel alloc] init];
-    [header setText:@"FrameLayout Top"];
-    [header setTextColor:[UIColor whiteColor]];
-    [header setTextAlignment:NSTextAlignmentCenter];
-    [header setBackgroundColor:[UIColor blueColor]];
-    LinearLayoutParams *lp1 = [[LinearLayoutParams alloc] initWithSize:MATCH_PARENT :WRAP_CONTENT];
-    [lp1 setMargins:20 :20 :20 :20];
-    lp1.gravity = [Gravity TOP];
-    lp1.extraHeight = 20;
-    [layout addSubview:header :lp1];
+// BOTTOM
+UILabel *footer = [[UILabel alloc] init];
+[footer setText:@"FrameLayout Bottom"];
+[ setTextColor:[UIColor whiteColor]];
+[footer setTextAlignment:NSTextAlignmentCenter];
+[footer setBackgroundColor:[UIColor darkGrayColor]];
+FrameLayoutParams *lp2 = [[FrameLayoutParams alloc] initWithSize:MATCH_PARENT :WRAP_CONTENT];
+[lp2 setMargins:20 :20 :20 :20];
+lp2.gravity = [Gravity BOTTOM];
+lp2.extraHeight = 20;
+[layout addSubview:footer :lp2];
+[self.view addSubview:layout];
     
-    // BOTTOM
-    UILabel *footer = [[UILabel alloc] init];
-    [footer setText:@"FrameLayout Bottom"];
-    [footer setTextColor:[UIColor whiteColor]];
-    [footer setTextAlignment:NSTextAlignmentCenter];
-    [footer setBackgroundColor:[UIColor darkGrayColor]];
-    LinearLayoutParams *lp2 = [[LinearLayoutParams alloc] initWithSize:MATCH_PARENT :WRAP_CONTENT];
-    [lp2 setMargins:20 :20 :20 :20];
-    lp2.gravity = [Gravity BOTTOM];
-    lp2.extraHeight = 20;
-    [layout addSubview:footer :lp2];
-    [self.view addSubview:layout];
-    
-    // CENTER
-    UILabel *center = [[UILabel alloc] init];
-    [center setText:@"FrameLayout Center"];
-    [center setTextColor:[UIColor whiteColor]];
-    [center setTextAlignment:NSTextAlignmentCenter];
-    [center setBackgroundColor:[UIColor redColor]];
-    LinearLayoutParams *lp3 = [[LinearLayoutParams alloc] initWithSize:MATCH_PARENT :WRAP_CONTENT];
-    [lp3 setMargins:20 :20 :20 :20];
-    lp3.gravity = [Gravity CENTER];
-    lp3.extraHeight = 20;
-    [layout addSubview:center :lp3];
+// CENTER
+UILabel *center = [[UILabel alloc] init];
+[center setText:@"FrameLayout Center"];
+[center setTextColor:[UIColor whiteColor]];
+[center setTextAlignment:NSTextAlignmentCenter];
+[center setBackgroundColor:[UIColor redColor]];
+FrameLayoutParams *lp3 = [[FrameLayoutParams alloc] initWithSize:MATCH_PARENT :WRAP_CONTENT];
+[lp3 setMargins:20 :20 :20 :20];
+lp3.gravity = [Gravity CENTER];
+lp3.extraHeight = 20;
+[layout addSubview:center :lp3];
 ```
 
 Output:
@@ -139,65 +142,66 @@ Output:
 <img src="https://user-images.githubusercontent.com/30867537/95323600-50070800-08ab-11eb-9ce3-33c679583c2a.png" width=250 title="Screen"/>
 
 ## RelativeLayout
-`RelativeLayout` is not nearly as simple as the previous two: a look at RelativeLayoutParams and rules shows a large number of attributes all focused around positioning children relative to the edges or center of RelativeLayout (similar to FrameLayout in fact), but also relative to one another — say, one child below another child.
 
 ![relativelayout](https://user-images.githubusercontent.com/30867537/95323842-ac6a2780-08ab-11eb-8b94-64a29eb9bc9c.png)
 
+`RelativeLayout` is not nearly as simple as the previous two: a look at RelativeLayoutParams and rules shows a large number of attributes all focused around positioning children relative to the edges or center of RelativeLayout (similar to FrameLayout in fact), but also relative to one another — say, one child below another child.
+
 Example : 
 ```objc
-    RelativeLayout *layout = [[RelativeLayout alloc] init];
-    ...
-    [self.view addSubview:layout];
-    
-    UILabel *label = [[UILabel alloc] init];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"TOP";
-    label.backgroundColor = [UIColor blueColor];
-    label.textColor = [UIColor whiteColor];
-    label.tag = 1;
-    RelativeLayoutParams *lp = [[RelativeLayoutParams alloc] initWithSize:MATCH_PARENT :112];
-    [lp addRule:RULE_ALIGN_PARENT_TOP];
-    [lp setMargins:20 :20 :20 :20];
-    [layout addSubview:label :lp];
-    
-    UILabel *label2 = [[UILabel alloc] init];
-    label2.textAlignment = NSTextAlignmentCenter;
-    label2.text = @"BOTTOM";
-    label2.backgroundColor = [UIColor redColor];
-    label2.textColor = [UIColor whiteColor];
-    label2.tag = 2;
-    RelativeLayoutParams *lp2 = [[RelativeLayoutParams alloc] initWithSize:MATCH_PARENT :112];
-    [lp2 addRule:RULE_ALIGN_PARENT_BOTTOM];
-    [lp2 setMargins:20 :20 :20 :20];
-    [layout addSubview:label2 :lp2];
-    
-    UILabel *label3 = [[UILabel alloc] init];
-    label3.textAlignment = NSTextAlignmentCenter;
-    label3.text = @"RIGHT";
-    label3.backgroundColor = [UIColor darkGrayColor];
-    label3.textColor = [UIColor whiteColor];
-    label3.tag = 3;
-    RelativeLayoutParams *lp3 = [[RelativeLayoutParams alloc] initWithSize:168 :MATCH_PARENT];
-    [lp3 addRule:RULE_BELOW:1];
-    [lp3 addRule:RULE_ABOVE:2];
-    [lp3 addRule:RULE_ALIGN_PARENT_END];
-    [lp3 setMargins:20 :0 :20 :0];
-    [layout addSubview:label3 :lp3];
-    
-    UILabel *label4 = [[UILabel alloc] init];
-    label4.textAlignment = NSTextAlignmentCenter;
-    label4.text = @"LEFT";
-    label4.backgroundColor = [UIColor lightGrayColor];
-    label4.textColor = [UIColor whiteColor];
-    label4.tag = 4;
-    RelativeLayoutParams *lp4 = [[RelativeLayoutParams alloc] initWithSize:MATCH_PARENT:MATCH_PARENT];
-    [lp4 addRule:RULE_BELOW:1];
-    [lp4 addRule:RULE_ABOVE:2];
-    [lp4 addRule:RULE_ALIGN_PARENT_START];
-    [lp4 addRule:RULE_LEFT_OF:3];
-    [lp4 setMargins:20 :0 :0 :0];
-    [lp4 setLayoutDirection:LAYOUT_DIRECTION_RTL];
-    [layout addSubview:label4 :lp4];
+RelativeLayout *layout = [[RelativeLayout alloc] init];
+...
+[self.view addSubview:layout];
+
+UILabel *label = [[UILabel alloc] init];
+label.textAlignment = NSTextAlignmentCenter;
+label.text = @"TOP";
+label.backgroundColor = [UIColor blueColor];
+label.textColor = [UIColor whiteColor];
+label.tag = 1;
+RelativeLayoutParams *lp = [[RelativeLayoutParams alloc] initWithSize:MATCH_PARENT :112];
+[lp addRule:RULE_ALIGN_PARENT_TOP];
+[lp setMargins:20 :20 :20 :20];
+[layout addSubview:label :lp];
+
+UILabel *label2 = [[UILabel alloc] init];
+label2.textAlignment = NSTextAlignmentCenter;
+label2.text = @"BOTTOM";
+label2.backgroundColor = [UIColor redColor];
+label2.textColor = [UIColor whiteColor];
+label2.tag = 2;
+RelativeLayoutParams *lp2 = [[RelativeLayoutParams alloc] initWithSize:MATCH_PARENT :112];
+[lp2 addRule:RULE_ALIGN_PARENT_BOTTOM];
+[lp2 setMargins:20 :20 :20 :20];
+[layout addSubview:label2 :lp2];
+
+UILabel *label3 = [[UILabel alloc] init];
+label3.textAlignment = NSTextAlignmentCenter;
+label3.text = @"RIGHT";
+label3.backgroundColor = [UIColor darkGrayColor];
+label3.textColor = [UIColor whiteColor];
+label3.tag = 3;
+RelativeLayoutParams *lp3 = [[RelativeLayoutParams alloc] initWithSize:168 :MATCH_PARENT];
+[lp3 addRule:RULE_BELOW:1];
+[lp3 addRule:RULE_ABOVE:2];
+[lp3 addRule:RULE_ALIGN_PARENT_END];
+[lp3 setMargins:20 :0 :20 :0];
+[layout addSubview:label3 :lp3];
+
+UILabel *label4 = [[UILabel alloc] init];
+label4.textAlignment = NSTextAlignmentCenter;
+label4.text = @"LEFT";
+label4.backgroundColor = [UIColor lightGrayColor];
+label4.textColor = [UIColor whiteColor];
+label4.tag = 4;
+RelativeLayoutParams *lp4 = [[RelativeLayoutParams alloc] initWithSize:MATCH_PARENT:MATCH_PARENT];
+[lp4 addRule:RULE_BELOW:1];
+[lp4 addRule:RULE_ABOVE:2];
+[lp4 addRule:RULE_ALIGN_PARENT_START];
+[lp4 addRule:RULE_LEFT_OF:3];
+[lp4 setMargins:20 :0 :0 :0];
+[lp4 setLayoutDirection:LAYOUT_DIRECTION_RTL];
+[layout addSubview:label4 :lp4];
 ```
 
 Output:
